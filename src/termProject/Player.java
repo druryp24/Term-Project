@@ -13,8 +13,8 @@ package termProject;
 import java.util.ArrayList;
 
 public class Player {
-    static private String name;
-    static private String gender;
+    static public String name;
+    static public String gender;
     static private double lastDamage = 0;
     static private double currentDamage = 0;
     static private Health playerHealth;
@@ -66,19 +66,19 @@ public class Player {
     /**
      * Sets the player's name.
      *
-     * @param name The name to assign to the player
+     * @param nameInput The name to assign to the player
      */
-    public void setName(String name) {
-        this.name = name;
+    public static void setName(String nameInput) {
+        name = nameInput;
     }
 
     /**
      * Sets the player's gender.
      *
-     * @param gender The gender to assign to the player
+     * @param genderInput The gender to assign to the player
      */
-    public void setGender(String gender) {
-        this.gender = gender;
+    public static void setGender(String genderInput) {
+        gender = genderInput;
     }
 
     /**

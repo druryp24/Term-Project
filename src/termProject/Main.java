@@ -7,14 +7,20 @@ import java.awt.BorderLayout;
 
 
 public class Main {
+    static Main main;
+
+
     private JPanel mainWindow;
     private JButton moveButton, huntButton, restButton, tradeButton, statusButton, historyButton, saveButton, quitButton;
     private JLabel startText, genderLbl, nameLbl;
     private JTextArea gameLog;
+
     private MapPanel gameMapPanel;
     private JPanel map;
     private static JFrame frame;
 
+    private static String gameLogMessage;
+    public static JTextArea gameLogRef;
 
     private Player currentPlayer;
 
@@ -35,8 +41,8 @@ public class Main {
     public Main()
     {
         JOptionPane.showMessageDialog(null, "Welcome to Perils Along the Platte! \n Press ok to Start", "Welcome", JOptionPane.QUESTION_MESSAGE,null);
-        initializeGameComponents();
-        showSetupDialog();
+        // todo initializeGameComponents();
+        // todo showSetupDialog();
         setUpBtn();
         gameLog.setOpaque(false); // Make gameLog background transparent
 
@@ -63,41 +69,17 @@ public class Main {
 
     public static void main(String[] args) {
         frame = new JFrame("Perils Along the Platte");
-        frame.setContentPane(new Main().mainWindow);
+        main = new Main();
+        frame.setContentPane(main.mainWindow);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
+
+        Initialize.setupCharacter();
+        Initialize.selectTrail();
     }
 
-    private boolean setupCharacter() {
-        // Gender selection
-        String[] genders = {"Male", "Female"};
-        String selectedGender = (String) JOptionPane.showInputDialog(
-                null,
-                "In the 1800s, men and women faced different challenges on the trail west.\n" +
-                        "Your choice will affect some of the situations you encounter.",
-                "Character Selection",
-                JOptionPane.QUESTION_MESSAGE,
-                null,
-                genders,
-                genders[0]);
-
-        if (selectedGender == null) return false;
-
-        // Name input
-        String name = JOptionPane.showInputDialog(
-                null,
-                "Enter your character's name:",
-                "Character Name",
-                JOptionPane.QUESTION_MESSAGE);
-
-        if (name == null || name.trim().isEmpty()) return false;
-
-        currentPlayer.setGender(selectedGender.toLowerCase());
-        currentPlayer.setName(name);
-        return true;
-    }
 
     private void initializeGameComponents() {
         // Initialize basic components
@@ -115,7 +97,7 @@ public class Main {
 
     private void showSetupDialog() {
         // Create character setup dialogs similar to startGame's methods
-        if (setupCharacter() && selectTrail() && selectDepartureMonth()) {
+        if (Initialize.setupCharacter() && Initialize.selectTrail() && selectDepartureMonth()) {
             initializeGameWithChoices();
             gameStarted = true;
         } else {
@@ -123,48 +105,7 @@ public class Main {
         }
     }
 
-    private boolean selectTrail() {
-        String[] trails = {
-                "Oregon Trail (2,170 miles) - Most popular route for farmers seeking fertile land",
-                "California Trail (1,950 miles) - Heavily traveled after the 1848 Gold Rush",
-                "Mormon Trail (1,300 miles) - Used by Mormon pioneers fleeing religious persecution"
-        };
 
-        String selectedTrail = (String) JOptionPane.showInputDialog(
-                null,
-                "There were several major routes west. Each trail had\n" +
-                        "different destinations, terrain, and challenges:",
-                "Trail Selection",
-                JOptionPane.QUESTION_MESSAGE,
-                null,
-                trails,
-                trails[0]);
-
-        if (selectedTrail == null) return false;
-
-        String trail;
-        String departureLocation;
-
-        if (selectedTrail.startsWith("Oregon")) {
-            trail = "Oregon";
-            departureLocation = "Independence, Missouri";
-            gameMap.initializeOregonTrail();
-        } else if (selectedTrail.startsWith("California")) {
-            trail = "California";
-            departureLocation = "Independence, Missouri";
-            gameMap.initializeCaliforniaTrail();
-        } else {
-            trail = "Mormon";
-            departureLocation = "Nauvoo, Illinois";
-            gameMap.initializeMormonTrail();
-        }
-
-        gameMap.setTrail(trail, departureLocation);
-        logMessage("You have chosen to travel along the " + trail + " Trail.");
-        logMessage("Your journey will begin in " + departureLocation + ".");
-
-        return true;
-    }
 
     private boolean selectDepartureMonth() {
         String[] months = {"March", "April", "May", "June", "July"};
@@ -214,10 +155,22 @@ public class Main {
         // Set total trail distance from map
         totalTrailDistance = gameMap.getTotalDistance();
     }
-    private void logMessage(String message) {
+
+    public void logMessage(String message) {
         gameLog.append(message + "\n");
         gameLog.setCaretPosition(gameLog.getDocument().getLength());
     }
+
+    private void logMessage() {
+        gameLog.append(gameLogMessage + "\n");
+        gameLog.setCaretPosition(gameLog.getDocument().getLength());
+    }
+
+    public static void setGameLogMessage(String message)
+    {
+        gameLogMessage = message;
+    }
+
 
     private void handleMove() {
         String[] directions = {"North", "South", "East", "West"};
