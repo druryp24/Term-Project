@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 public class Commands {
     private Player player;
-    private inventory inventory;
+    private Inventory inventory;
     private Movement movement;
     private Hunting hunting;
     private Trading trading;
@@ -31,7 +31,7 @@ public class Commands {
      * @param trading The trading system for commerce
      * @param wagon The wagon object for transportation
      */
-    public Commands(Player player, inventory inventory, Movement movement, Hunting hunting, Trading trading, Wagon wagon) {
+    public Commands(Player player, Inventory inventory, Movement movement, Hunting hunting, Trading trading, Wagon wagon) {
         this.player = player;
         this.inventory = inventory;
         this.movement = movement;

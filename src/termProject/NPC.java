@@ -17,7 +17,7 @@ public class NPC {
     private int health;
     private int maxHealth;
     private int currency;
-    private inventory inventory;
+    private Inventory inventory;
 
     /**
      * Constructor for creating a new NPC with specified attributes.
@@ -31,7 +31,7 @@ public class NPC {
         this.maxHealth = maxHealth;
         this.health = maxHealth; // Initially, the NPC has full health
         this.currency = currency;
-        this.inventory = new inventory(); // NPC's inventory (optional, could store items)
+        this.inventory = new Inventory(); // NPC's inventory (optional, could store items)
     }
 
     /**

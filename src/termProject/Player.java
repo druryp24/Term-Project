@@ -26,6 +26,13 @@ public class Player {
     static Currency money;
     static private Health health;
 
+    ArrayList<Oxen> oxenList;
+    ArrayList<Food> foodList;
+    Food food;
+    Inventory inventory;
+    Weapon weapon;
+    Wagon wagon;
+    Wagon playerWagon;
 
     /**
      * Default constructor for creating a new player.
@@ -294,7 +301,7 @@ public class Player {
      *
      * @return The player's inventory object
      */
-    public inventory getInventory(){
+    public Inventory getInventory(){
         return inventory;
     }
     
@@ -304,7 +311,7 @@ public class Player {
      * 
      * @param playerInventory The inventory object to associate with this player
      */
-    public void setInventory(inventory playerInventory) {
+    public void setInventory(Inventory playerInventory) {
         this.inventory = playerInventory;
     }
 
@@ -514,10 +521,12 @@ public class Player {
         return gameMap.getCurrentDistanceTraveled() >= gameMap.getRemainingDistance();
     }
 
-    
+    /*
     public int getPartySize() {
         return partySize;
     }
+
+     */
     
     public Wagon getWagon() {
          return playerWagon;
@@ -534,7 +543,7 @@ public class Player {
      */
     public void createInventory() {
         // Initialize a new inventory for this player
-        inventory playerInventory = new inventory();
+        Inventory playerInventory = new Inventory();
         
         // Add basic starting items to the inventory
         playerInventory.addItem(new Food("Rations", 1, 100), 50);      // 50 pounds of food

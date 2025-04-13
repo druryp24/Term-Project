@@ -3,7 +3,7 @@ package termProject;
 import java.io.*;
 
 public class SaveGame {
-    public void saveGame(Player player, GameMap gameMap, inventory inventory, Time gameTime) {
+    public void saveGame(Player player, GameMap gameMap, Inventory inventory, Time gameTime) {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("savegame.dat"))) {
             out.writeObject(player);
             out.writeObject(gameMap);
@@ -18,7 +18,7 @@ public class SaveGame {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("savegame.dat"))) {
             Player player = (Player) in.readObject();
             GameMap gameMap = (GameMap) in.readObject();
-            inventory inventory = (inventory) in.readObject();
+            Inventory inventory = (Inventory) in.readObject();
             Time gameTime = (Time) in.readObject();
             return new GameState(player, gameMap, inventory, gameTime);
         } catch (IOException | ClassNotFoundException e) {

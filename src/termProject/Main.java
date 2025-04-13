@@ -19,7 +19,7 @@ public class Main {
     private Player currentPlayer;
 
     private GameMap gameMap;
-    private inventory playerInventory;
+    private Inventory playerInventory;
     private Wagon playerWagon;
     public Time gameTime;
     private Weather currentWeather;
@@ -103,7 +103,7 @@ public class Main {
         // Initialize basic components
         currentPlayer = new Player("Player 1", "Male", 100);
         gameMap = new GameMap(0, 0);
-        playerInventory = new inventory();
+        playerInventory = new Inventory();
         playerWagon = new Wagon();
         gameTime = new Time();
         playerMoney = new Currency(1600); // Standard starting money
@@ -241,7 +241,10 @@ public class Main {
                 processTravelEvents();
 
                 // Consume resources based on travel
+                /*
                 playerInventory.consumeDailyRations(currentPlayer.getPartySize());
+
+                 */
 
                 // Update game time
                 gameTime.advanceDay();

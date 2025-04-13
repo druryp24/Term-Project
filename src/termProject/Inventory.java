@@ -12,20 +12,20 @@ import java.util.ArrayList;
  * @date : 03/25/2025
  * @file : inventory.java
  */
-public class inventory{
+public class Inventory {
 
     int maxInventorySpace = 30;
     int inventory;
     Item[] items = new Item[maxInventorySpace];
     Item itemInUse;
     Food foodInUse;
-	private inventory playerInventory;
+	private Inventory playerInventory;
 
     /**
      * Default constructor for creating an empty inventory.
      * Initializes the inventory with 0 items.
      */
-    public inventory() {
+    public Inventory() {
         this.inventory = 0;
     }
     
@@ -125,7 +125,7 @@ public class inventory{
      * Displays all items currently in the inventory.
      * @return 
      */
-    public inventory displayInventory() {
+    public Inventory displayInventory() {
         for(int i = 0; i < inventory; i++){
             if(items[i] != null){
                 System.out.print("Inventory: " + items[i] + " ");

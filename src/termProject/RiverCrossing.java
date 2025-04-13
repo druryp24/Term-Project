@@ -14,7 +14,7 @@ public class RiverCrossing extends RandomEvent {
     private static final int baseWidth = 50;
 	private static final int baseDepth = 100;
 	private Weather currentWeather;
-	private inventory inventory;
+	private Inventory inventory;
 
 	public void handleCrossing(Player player, Wagon wagon) {
         double depth = calculateRiverDepth();
