@@ -5,10 +5,10 @@ package termProject;
  * Represents the game world map with landmarks, distances, and trail information.
  * Manages player position, travel progress, and geographic features along the trail.
  *
- * @author : Alex Randall, Chase McCluskey, Painter Drury, and Domenic Pilla
+ * @author : Painter Drury, and Domenic Pilla
  * @version : 1.0
- * @date : 03/25/2025
- * @file : map.java
+ * @ date : 03/25/2025
+ * @ file : map.java
  */
 import java.util.*;
 public class GameMap {
@@ -30,6 +30,7 @@ public class GameMap {
      * 
      * @param startX The starting X-coordinate for the player
      * @param startY The starting Y-coordinate for the player
+     *
      */
     public GameMap(int startX, int startY) {
         playerX = startX;

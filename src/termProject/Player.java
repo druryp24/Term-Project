@@ -5,10 +5,10 @@ package termProject;
  * Represents the player character with attributes such as health, hunger, and inventory.
  * Manages player status, item usage, currency, and interactions with game mechanics.
  *
- * @author : Alex Randall, Chase McCluskey, Painter Drury, and Domenic Pilla
+ * @author : Painter Drury, and Domenic Pilla
  * @version : 1.0
- * @date : 03/25/2025
- * @file : player.java
+ * @ date : 03/25/2025
+ * @ file : player.java
  */
 import java.util.ArrayList;
 

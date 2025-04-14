@@ -5,10 +5,10 @@ package termProject;
  * Represents significant locations along the trail that players can visit.
  * Contains information about the landmark's position, description, and special features.
  *
- * @author : Alex Randall, Chase McCluskey, Painter Drury, and Domenic Pilla
+ * @author : Painter Drury, and Domenic Pilla
  * @version : 1.0
- * @date : 03/25/2025
- * @file : landmark.java
+ * @ date : 03/25/2025
+ * @ file : landmark.java
  */
 public class Landmark extends GameMap {
     private String name;

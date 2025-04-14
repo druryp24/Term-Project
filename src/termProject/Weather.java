@@ -5,10 +5,10 @@ package termProject;
  * Manages weather conditions and their impact on gameplay.
  * Handles temperature, precipitation, wind, and seasonal changes.
  *
- * @author : Alex Randall, Chase McCluskey, Painter Drury, and Domenic Pilla
+ * @author : Painter Drury, and Domenic Pilla
  * @version : 1.0
- * @date : 03/25/2025
- * @file : weather.java
+ * @ date : 03/25/2025
+ * @ file : weather.java
  */
 public class Weather {
     double temperature;
@@ -31,7 +31,7 @@ public class Weather {
      * Changes conditions when moving to a new month.
      * 
      * @param days The number of days elapsed
-     * @param month The current month
+     * @param monthNum The current month number
      */
     public void updateWeather(int days, int monthNum) {
         switch(monthNum){

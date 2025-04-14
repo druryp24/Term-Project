@@ -7,8 +7,8 @@ package termProject;
  *
  * @author : Alex Randall, Chase McCluskey, Painter Drury, and Domenic Pilla
  * @version : 1.0
- * @date : 03/25/2025
- * @file : wagonDamage.java
+ * @ date : 03/25/2025
+ * @ file : wagonDamage.java
  */
 public class WagonDamage extends RandomEvent {
 }

@@ -7,10 +7,10 @@ import java.util.ArrayList;
  * Manages the collection of items that the player can carry and use.
  * Provides functionality for adding, removing, sorting, and using items.
  *
- * @author : Alex Randall, Chase McCluskey, Painter Drury, and Domenic Pilla
+ * @author : Painter Drury, and Domenic Pilla
  * @version : 1.0
- * @date : 03/25/2025
- * @file : inventory.java
+ * @ date : 03/25/2025
+ * @ file : inventory.java
  */
 public class Inventory {
 

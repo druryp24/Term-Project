@@ -5,7 +5,7 @@ package termProject;
  * Manages hunting mechanics to acquire food during the journey.
  * Handles weapon use, ammunition, and food acquisition through hunting activities.
  *
- * @author : Alex Randall, Chase McCluskey, Painter Drury, and Domenic Pilla
+ * @author : Painter Drury, and Domenic Pilla
  * @version : 1.0
  * @date : 03/25/2025
  * @file : hunting.java

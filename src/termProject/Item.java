@@ -5,10 +5,10 @@ package termProject;
  * Base class for all in-game items including food, weapons, tools, and supplies.
  * Manages common item properties such as weight, quantity, and special attributes.
  *
- * @author : Alex Randall, Chase McCluskey, Painter Drury, and Domenic Pilla
+ * @author : Painter Drury, and Domenic Pilla
  * @version : 1.0
- * @date : 03/25/2025
- * @file : item.java
+ * @ date : 03/25/2025
+ * @ file : item.java
  */
 public class Item {
     private String name;
@@ -149,10 +149,7 @@ public class Item {
      * @return true if the item has expired, false otherwise
      */
     public boolean isExpired() {
-        if(Math.random() * 1 + 10 < 5){
-            return true;
-        }
-        else return false;
+        return Math.random() * 1 + 10 < 5;
     }
 
     /**

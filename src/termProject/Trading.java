@@ -7,8 +7,8 @@ package termProject;
  *
  * @author : Alex Randall, Chase McCluskey, Painter Drury, and Domenic Pilla
  * @version : 1.0
- * @date : 03/25/2025
- * @file : trading.java
+ * @ date : 03/25/2025
+ * @ file : trading.java
  */
 import java.util.ArrayList;
 import java.util.Scanner;

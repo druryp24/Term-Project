@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * Represents non-player characters that players can interact with during the journey.
  * Manages NPC attributes, dialogue, trading, and combat interactions.
  *
- * @author : Alex Randall, Chase McCluskey, Painter Drury, and Domenic Pilla
+ * @author : Painter Drury, and Domenic Pilla
  * @version : 1.0
  * @date : 03/25/2025
  * @file : NPC.java

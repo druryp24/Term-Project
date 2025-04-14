@@ -5,10 +5,10 @@ package termProject;
  * Manages player's money and financial transactions.
  * Handles balance tracking, deposits, and withdrawals.
  *
- * @author : Alex Randall, Chase McCluskey, Painter Drury, and Domenic Pilla
+ * @author : Painter Drury, and Domenic Pilla
  * @version : 1.0
- * @date : 03/25/2025
- * @file : currency.java
+ * @ date : 03/25/2025
+ * @ file : currency.java
  */
 public class Currency {
     private static int balance;

@@ -5,10 +5,10 @@ package termProject;
  * Manages health status for players, companions, and animals.
  * Handles damage, healing, and health-related game mechanics.
  *
- * @author : Alex Randall, Chase McCluskey, Painter Drury, and Domenic Pilla
+ * @author : Painter Drury, and Domenic Pilla
  * @version : 1.0
- * @date : 03/25/2025
- * @file : health.java
+ * @ date : 03/25/2025
+ * @ file : health.java
  */
 public class Health {
     int maxHealth = 100;

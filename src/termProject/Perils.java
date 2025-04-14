@@ -1,14 +1,15 @@
 package termProject;
 
 /**
+ *
  * Perils Class of the Perils Along the Platte Game
  * Manages various hazards and events that can occur during the journey.
  * Handles accidents, illnesses, river crossings, and other random events.
  *
- * @author : Alex Randall, Chase McCluskey, Painter Drury, and Domenic Pilla
+ * @author : Painter Drury, and Domenic Pilla
  * @version : 1.0
- * @date : 03/25/2025
- * @file : perils.java
+ * @ date : 03/25/2025
+ * @ file : perils.java
  */
 import java.util.Random;
 

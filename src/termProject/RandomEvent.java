@@ -7,8 +7,8 @@ package termProject;
  *
  * @author : Alex Randall, Chase McCluskey, Painter Drury, and Domenic Pilla
  * @version : 1.0
- * @date : 03/25/2025
- * @file : randomEvent.java
+ * @ date : 03/25/2025
+ * @ file : randomEvent.java
  */
 public class RandomEvent {
     private int probability;

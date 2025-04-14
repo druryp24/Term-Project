@@ -5,10 +5,10 @@ package termProject;
  * Represents medical items that can heal players and companions.
  * Extends the item class with medicine-specific healing abilities.
  *
- * @author : Alex Randall, Chase McCluskey, Painter Drury, and Domenic Pilla
+ * @author : Painter Drury, and Domenic Pilla
  * @version : 1.0
- * @date : 03/25/2025
- * @file : medicine.java
+ * @ date : 03/25/2025
+ * @ file : medicine.java
  */
 public class Medicine extends Item {
     private int healingPower;
@@ -19,7 +19,7 @@ public class Medicine extends Item {
      * Automatically sets healing power based on medicine type.
      * 
      * @param name The name of the medicine
-     * @param quantity The quantity of medicine
+     * @param maxQuantity The quantity of medicine
      */
     public Medicine(String name, int weight, int value, int maxQuantity) {
         super(name, weight, 1, value, maxQuantity); // Added value and maxQuantity parameters
