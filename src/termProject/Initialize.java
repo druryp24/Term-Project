@@ -4,8 +4,12 @@ import javax.swing.*;
 
 public class Initialize
 {
-
-
+    public static void start()
+    {
+        if(setupCharacter() && selectDepartureMonth() && selectTrail());
+        else
+            Main.main.logMessage("Failed to set up game.");
+    }
 
     public static boolean setupCharacter() {
         // Gender selection
@@ -36,6 +40,44 @@ public class Initialize
         Main.main.logMessage("Hello " + Player.name );
         return true;
 
+    }
+
+    public static boolean selectDepartureMonth() {
+        String[] months = {"March", "April", "May", "June", "July"};
+        String[] descriptions = {
+                "March: An early start, but you'll face muddy trails and swollen rivers.",
+                "April: A good balance - the trails are drying out and you'll have plenty of time.",
+                "May: The most popular month for departure - grass for animals is plentiful.",
+                "June: Still a good time to leave, but you'll need to maintain a steady pace.",
+                "July: A late start - you'll need to hurry to cross mountains before winter."
+        };
+
+        String selectedMonth = (String) JOptionPane.showInputDialog(
+                null,
+                "The timing of your departure was crucial for pioneers.\n" +
+                        "Leave too early: face mud and flooding from spring rains.\n" +
+                        "Leave too late: risk being trapped in mountain snow.\n\n" +
+                        "Most emigrants departed between April and June.",
+                "Departure Month Selection",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                descriptions,
+                descriptions[1]);
+
+        if (selectedMonth == null) return false;
+
+        for (int i = 0; i < descriptions.length; i++) {
+            if (descriptions[i].equals(selectedMonth)) {
+                Time.monthNum = i;
+                break;
+            }
+        }
+
+        // Set weather based on month choice
+       //todo currentWeather = new Weather(); // Weather constructor takes month as 3-7
+
+        Main.main.logMessage("Selected month: " + Time.monthName[Time.monthNum]);
+        return true;
     }
 
     public static boolean selectTrail() {

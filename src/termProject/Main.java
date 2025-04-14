@@ -9,18 +9,13 @@ import java.awt.BorderLayout;
 public class Main {
     static Main main;
 
-
     private JPanel mainWindow;
     private JButton moveButton, huntButton, restButton, tradeButton, statusButton, historyButton, saveButton, quitButton;
-    private JLabel startText, genderLbl, nameLbl;
     private JTextArea gameLog;
 
     private MapPanel gameMapPanel;
     private JPanel map;
     private static JFrame frame;
-
-    private static String gameLogMessage;
-    public static JTextArea gameLogRef;
 
     private Player currentPlayer;
 
@@ -31,7 +26,6 @@ public class Main {
     private Weather currentWeather;
     private Currency playerMoney;
     private Hunting huntingSystem;
-    private String gender;
     private boolean gameStarted = false;
     private int totalTrailDistance;
     private int daysTraveled = 0;
@@ -41,8 +35,6 @@ public class Main {
     public Main()
     {
         JOptionPane.showMessageDialog(null, "Welcome to Perils Along the Platte! \n Press ok to Start", "Welcome", JOptionPane.QUESTION_MESSAGE,null);
-        // todo initializeGameComponents();
-        // todo showSetupDialog();
         setUpBtn();
         gameLog.setOpaque(false); // Make gameLog background transparent
 
@@ -76,8 +68,7 @@ public class Main {
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
 
-        Initialize.setupCharacter();
-        Initialize.selectTrail();
+       Initialize.start();
     }
 
 
@@ -97,52 +88,12 @@ public class Main {
 
     private void showSetupDialog() {
         // Create character setup dialogs similar to startGame's methods
-        if (Initialize.setupCharacter() && Initialize.selectTrail() && selectDepartureMonth()) {
+        if (Initialize.setupCharacter() && Initialize.selectTrail() && Initialize.selectDepartureMonth()) {
             initializeGameWithChoices();
             gameStarted = true;
         } else {
             System.exit(0); // User canceled setup
         }
-    }
-
-
-
-    private boolean selectDepartureMonth() {
-        String[] months = {"March", "April", "May", "June", "July"};
-        String[] descriptions = {
-                "March: An early start, but you'll face muddy trails and swollen rivers.",
-                "April: A good balance - the trails are drying out and you'll have plenty of time.",
-                "May: The most popular month for departure - grass for animals is plentiful.",
-                "June: Still a good time to leave, but you'll need to maintain a steady pace.",
-                "July: A late start - you'll need to hurry to cross mountains before winter."
-        };
-
-        String selectedMonth = (String) JOptionPane.showInputDialog(
-                null,
-                "The timing of your departure was crucial for pioneers.\n" +
-                        "Leave too early: face mud and flooding from spring rains.\n" +
-                        "Leave too late: risk being trapped in mountain snow.\n\n" +
-                        "Most emigrants departed between April and June.",
-                "Departure Month Selection",
-                JOptionPane.QUESTION_MESSAGE,
-                null,
-                descriptions,
-                descriptions[1]);
-
-        if (selectedMonth == null) return false;
-
-        int monthChoice = 0;
-        for (int i = 0; i < descriptions.length; i++) {
-            if (descriptions[i].equals(selectedMonth)) {
-                monthChoice = i + 1;
-                break;
-            }
-        }
-
-        // Set weather based on month choice
-        currentWeather = new Weather(); // Weather constructor takes month as 3-7
-
-        return true;
     }
 
     private void initializeGameWithChoices() {
@@ -159,16 +110,6 @@ public class Main {
     public void logMessage(String message) {
         gameLog.append(message + "\n");
         gameLog.setCaretPosition(gameLog.getDocument().getLength());
-    }
-
-    private void logMessage() {
-        gameLog.append(gameLogMessage + "\n");
-        gameLog.setCaretPosition(gameLog.getDocument().getLength());
-    }
-
-    public static void setGameLogMessage(String message)
-    {
-        gameLogMessage = message;
     }
 
 
@@ -311,6 +252,7 @@ public class Main {
             System.exit(0);
         }
     }
+
     private void checkForLandmarks() {
         if (gameMap.hasReachedNewLandmark()) {
             Landmark currentLandmark = gameMap.getCurrentLandmark1();
