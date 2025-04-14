@@ -17,10 +17,12 @@ public class GameMap {
     private String endLocation = "Independence Rock"; // or somewhere between there and ft. laramie
     private int totalDistance;
     private int currentDistanceTraveled = 0;
-    private ArrayList<Landmark> landmarks1;
+
     private int currentLandmarkIndex;
-    private int playerX;
-    private int playerY;
+
+    private static ArrayList<Landmark> landmarks1 = new ArrayList<>();
+    private static int playerX;
+    private static int playerY;
     private Landmark landmark;
 
     /**
@@ -30,8 +32,8 @@ public class GameMap {
      * @param startY The starting Y-coordinate for the player
      */
     public GameMap(int startX, int startY) {
-        this.playerX = startX;
-        this.playerY = startY;
+        playerX = startX;
+        playerY = startY;
     }
 
     /**
@@ -134,9 +136,8 @@ public class GameMap {
      * Initializes the landmarks for the Oregon Trail.
      * Creates landmarks with their locations, distances, and descriptions.
      */
-    public void initializeOregonTrail() {
-        landmarks1 = new ArrayList<>();
-
+    public static void initializeOregonTrail()
+    {
         landmarks1.add(new Landmark("Independence, Missouri", 0, 0, 0, "Starting point for many westward journeys.",
                 "This busy frontier town serves as the main outfitting point for wagon trains. Shops are selling everything from wagons and oxen to food supplies at premium prices.",
                 false, true));
@@ -167,7 +168,7 @@ public class GameMap {
      * Initializes the landmarks for the California Trail.
      * Creates landmarks with their locations, distances, and descriptions.
      */
-    public void initializeCaliforniaTrail() {
+    public static void initializeCaliforniaTrail() {
         landmarks1 = new ArrayList<>();
 
         landmarks1.add(new Landmark("Independence, Missouri", 0, 0, 0, "Starting point for many westward journeys.",
@@ -196,7 +197,7 @@ public class GameMap {
      * Initializes the landmarks for the Mormon Trail.
      * Creates landmarks with their locations, distances, and descriptions.
      */
-    public void initializeMormonTrail() {
+    public static void initializeMormonTrail() {
         landmarks1 = new ArrayList<>();
 
         landmarks1.add(new Landmark("Nauvoo, Illinois", 0, 0, 0, "Starting point for Mormon pioneers fleeing religious persecution.",

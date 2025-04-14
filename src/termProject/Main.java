@@ -7,14 +7,15 @@ import java.awt.BorderLayout;
 
 
 public class Main {
+    static Main main;
+
     private JPanel mainWindow;
     private JButton moveButton, huntButton, restButton, tradeButton, statusButton, historyButton, saveButton, quitButton;
-    private JLabel startText, genderLbl, nameLbl;
     private JTextArea gameLog;
+
     private MapPanel gameMapPanel;
     private JPanel map;
     private static JFrame frame;
-
 
     private Player currentPlayer;
 
@@ -25,7 +26,6 @@ public class Main {
     private Weather currentWeather;
     private Currency playerMoney;
     private Hunting huntingSystem;
-    private String gender;
     private boolean gameStarted = false;
     private int totalTrailDistance;
     private int daysTraveled = 0;
@@ -34,12 +34,8 @@ public class Main {
 
     public Main()
     {
-        JOptionPane.showMessageDialog(null, "Welcome to Perils Along the Platte! \n Press ok to Start", "Welcome", JOptionPane.QUESTION_MESSAGE,null);
-        initializeGameComponents();
-        showSetupDialog();
         setUpBtn();
-        gameLog.setOpaque(false); // Make gameLog background transparent
-
+        gameLog.setOpaque(false);
         map.setVisible(false);
         frame.pack();
 
@@ -63,40 +59,14 @@ public class Main {
 
     public static void main(String[] args) {
         frame = new JFrame("Perils Along the Platte");
-        frame.setContentPane(new Main().mainWindow);
+        main = new Main();
+        frame.setContentPane(main.mainWindow);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
-    }
 
-    private boolean setupCharacter() {
-        // Gender selection
-        String[] genders = {"Male", "Female"};
-        String selectedGender = (String) JOptionPane.showInputDialog(
-                null,
-                "In the 1800s, men and women faced different challenges on the trail west.\n" +
-                        "Your choice will affect some of the situations you encounter.",
-                "Character Selection",
-                JOptionPane.QUESTION_MESSAGE,
-                null,
-                genders,
-                genders[0]);
-
-        if (selectedGender == null) return false;
-
-        // Name input
-        String name = JOptionPane.showInputDialog(
-                null,
-                "Enter your character's name:",
-                "Character Name",
-                JOptionPane.QUESTION_MESSAGE);
-
-        if (name == null || name.trim().isEmpty()) return false;
-
-        currentPlayer.setGender(selectedGender.toLowerCase());
-        currentPlayer.setName(name);
-        return true;
+       Initialize.start();
     }
 
     private void initializeGameComponents() {
@@ -113,97 +83,6 @@ public class Main {
         currentPlayer.createInventory();
     }
 
-    private void showSetupDialog() {
-        // Create character setup dialogs similar to startGame's methods
-        if (setupCharacter() && selectTrail() && selectDepartureMonth()) {
-            initializeGameWithChoices();
-            gameStarted = true;
-        } else {
-            System.exit(0); // User canceled setup
-        }
-    }
-
-    private boolean selectTrail() {
-        String[] trails = {
-                "Oregon Trail (2,170 miles) - Most popular route for farmers seeking fertile land",
-                "California Trail (1,950 miles) - Heavily traveled after the 1848 Gold Rush",
-                "Mormon Trail (1,300 miles) - Used by Mormon pioneers fleeing religious persecution"
-        };
-
-        String selectedTrail = (String) JOptionPane.showInputDialog(
-                null,
-                "There were several major routes west. Each trail had\n" +
-                        "different destinations, terrain, and challenges:",
-                "Trail Selection",
-                JOptionPane.QUESTION_MESSAGE,
-                null,
-                trails,
-                trails[0]);
-
-        if (selectedTrail == null) return false;
-
-        String trail;
-        String departureLocation;
-
-        if (selectedTrail.startsWith("Oregon")) {
-            trail = "Oregon";
-            departureLocation = "Independence, Missouri";
-            gameMap.initializeOregonTrail();
-        } else if (selectedTrail.startsWith("California")) {
-            trail = "California";
-            departureLocation = "Independence, Missouri";
-            gameMap.initializeCaliforniaTrail();
-        } else {
-            trail = "Mormon";
-            departureLocation = "Nauvoo, Illinois";
-            gameMap.initializeMormonTrail();
-        }
-
-        gameMap.setTrail(trail, departureLocation);
-        logMessage("You have chosen to travel along the " + trail + " Trail.");
-        logMessage("Your journey will begin in " + departureLocation + ".");
-
-        return true;
-    }
-
-    private boolean selectDepartureMonth() {
-        String[] months = {"March", "April", "May", "June", "July"};
-        String[] descriptions = {
-                "March: An early start, but you'll face muddy trails and swollen rivers.",
-                "April: A good balance - the trails are drying out and you'll have plenty of time.",
-                "May: The most popular month for departure - grass for animals is plentiful.",
-                "June: Still a good time to leave, but you'll need to maintain a steady pace.",
-                "July: A late start - you'll need to hurry to cross mountains before winter."
-        };
-
-        String selectedMonth = (String) JOptionPane.showInputDialog(
-                null,
-                "The timing of your departure was crucial for pioneers.\n" +
-                        "Leave too early: face mud and flooding from spring rains.\n" +
-                        "Leave too late: risk being trapped in mountain snow.\n\n" +
-                        "Most emigrants departed between April and June.",
-                "Departure Month Selection",
-                JOptionPane.QUESTION_MESSAGE,
-                null,
-                descriptions,
-                descriptions[1]);
-
-        if (selectedMonth == null) return false;
-
-        int monthChoice = 0;
-        for (int i = 0; i < descriptions.length; i++) {
-            if (descriptions[i].equals(selectedMonth)) {
-                monthChoice = i + 1;
-                break;
-            }
-        }
-
-        // Set weather based on month choice
-        currentWeather = new Weather(); // Weather constructor takes month as 3-7
-
-        return true;
-    }
-
     private void initializeGameWithChoices() {
         // Add initial inventory (similar to startGame's initialization)
         playerInventory.addItem(new Food("Rations", 1, 100), 50);
@@ -214,7 +93,8 @@ public class Main {
         // Set total trail distance from map
         totalTrailDistance = gameMap.getTotalDistance();
     }
-    private void logMessage(String message) {
+
+    public void logMessage(String message) {
         gameLog.append(message + "\n");
         gameLog.setCaretPosition(gameLog.getDocument().getLength());
     }
@@ -234,7 +114,9 @@ public class Main {
             String distanceStr = JOptionPane.showInputDialog("Enter distance (miles):");
             try {
                 int distance = Integer.parseInt(distanceStr);
+
                 Movement moveSystem = new Movement(gameMap);
+
                 moveSystem.travelDirection(direction.toLowerCase(), distance);
 
                 // Process travel events
@@ -325,6 +207,7 @@ public class Main {
 
         updateGameState();
     }
+
     private void updateGameState() {
         gameMapPanel.repaint();
         checkGameConditions();
@@ -352,12 +235,13 @@ public class Main {
 
         if (choice == JOptionPane.YES_OPTION) {
             initializeGameComponents();
-            showSetupDialog();
+            Initialize.start();
             updateGameState();
         } else {
             System.exit(0);
         }
     }
+
     private void checkForLandmarks() {
         if (gameMap.hasReachedNewLandmark()) {
             Landmark currentLandmark = gameMap.getCurrentLandmark1();
@@ -423,22 +307,6 @@ public class Main {
                 handleRiverCrossing();
                 break;
         }
-    }
-
-    // This method replaces the current JPanel with the MapPanel and triggers repaint
-    public void replaceWithMapPanel() {
-        // Remove the current contentPanel
-        mainWindow.remove(map);
-
-        // Add the MapPanel in its place
-        mainWindow.add(gameMapPanel, BorderLayout.CENTER);
-
-        // Revalidate and repaint the container to reflect the changes
-        mainWindow.revalidate();
-        mainWindow.repaint();
-
-        // Optionally, trigger a repaint on the MapPanel itself to refresh it
-        gameMapPanel.repaint();
     }
 
     public void setUpBtn()

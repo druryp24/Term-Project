@@ -13,13 +13,13 @@ package termProject;
 import java.lang.*;
 
 public class Time {
-    static String month;
-    static String day;
-    static String year;
-    static String hour;
-    static String minute;
-    static String[] monthName = new String[] {"March", "April", "May", "June", "July"};
-    static int monthNum;
+    public static String month;
+    public static String day;
+    public static String year;
+    public static String hour;
+    public static String minute;
+    public static String[] monthName = new String[] {"March", "April", "May", "June", "July"};
+    public static int monthNum;
     
     // Added variables for time progression
     private int currentDay;
