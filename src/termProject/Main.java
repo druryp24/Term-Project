@@ -34,10 +34,8 @@ public class Main {
 
     public Main()
     {
-        JOptionPane.showMessageDialog(null, "Welcome to Perils Along the Platte! \n Press ok to Start", "Welcome", JOptionPane.QUESTION_MESSAGE,null);
         setUpBtn();
-        gameLog.setOpaque(false); // Make gameLog background transparent
-
+        gameLog.setOpaque(false);
         map.setVisible(false);
         frame.pack();
 
@@ -71,7 +69,6 @@ public class Main {
        Initialize.start();
     }
 
-
     private void initializeGameComponents() {
         // Initialize basic components
         currentPlayer = new Player("Player 1", "Male", 100);
@@ -84,16 +81,6 @@ public class Main {
         daysTraveled = 1;
 
         currentPlayer.createInventory();
-    }
-
-    private void showSetupDialog() {
-        // Create character setup dialogs similar to startGame's methods
-        if (Initialize.setupCharacter() && Initialize.selectTrail() && Initialize.selectDepartureMonth()) {
-            initializeGameWithChoices();
-            gameStarted = true;
-        } else {
-            System.exit(0); // User canceled setup
-        }
     }
 
     private void initializeGameWithChoices() {
@@ -112,7 +99,6 @@ public class Main {
         gameLog.setCaretPosition(gameLog.getDocument().getLength());
     }
 
-
     private void handleMove() {
         String[] directions = {"North", "South", "East", "West"};
         String direction = (String) JOptionPane.showInputDialog(
@@ -128,7 +114,9 @@ public class Main {
             String distanceStr = JOptionPane.showInputDialog("Enter distance (miles):");
             try {
                 int distance = Integer.parseInt(distanceStr);
+
                 Movement moveSystem = new Movement(gameMap);
+
                 moveSystem.travelDirection(direction.toLowerCase(), distance);
 
                 // Process travel events
@@ -219,6 +207,7 @@ public class Main {
 
         updateGameState();
     }
+
     private void updateGameState() {
         gameMapPanel.repaint();
         checkGameConditions();
@@ -246,7 +235,7 @@ public class Main {
 
         if (choice == JOptionPane.YES_OPTION) {
             initializeGameComponents();
-            showSetupDialog();
+            Initialize.start();
             updateGameState();
         } else {
             System.exit(0);
@@ -318,22 +307,6 @@ public class Main {
                 handleRiverCrossing();
                 break;
         }
-    }
-
-    // This method replaces the current JPanel with the MapPanel and triggers repaint
-    public void replaceWithMapPanel() {
-        // Remove the current contentPanel
-        mainWindow.remove(map);
-
-        // Add the MapPanel in its place
-        mainWindow.add(gameMapPanel, BorderLayout.CENTER);
-
-        // Revalidate and repaint the container to reflect the changes
-        mainWindow.revalidate();
-        mainWindow.repaint();
-
-        // Optionally, trigger a repaint on the MapPanel itself to refresh it
-        gameMapPanel.repaint();
     }
 
     public void setUpBtn()

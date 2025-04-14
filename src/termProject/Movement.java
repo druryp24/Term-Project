@@ -45,7 +45,8 @@ public class Movement extends Player {
      * @param distance The number of miles to travel
      */
     public void travelDirection(String direction, int distance) {
-    	double multiplier = 1.0;
+
+        double multiplier = 1.0;
     	
     	 if (!directionMap.containsKey(direction.toLowerCase())) {
              System.out.println("Invalid direction: " + direction);
