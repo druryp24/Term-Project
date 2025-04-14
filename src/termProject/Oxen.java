@@ -5,10 +5,10 @@ package termProject;
  * Represents the draft animals that pull the pioneer wagon.
  * Manages oxen health, feeding, working, and other related mechanics.
  *
- * @author : Alex Randall, Chase McCluskey, Painter Drury, and Domenic Pilla
+ * @author : Painter Drury, and Domenic Pilla
  * @version : 1.0
- * @date : 03/25/2025
- * @file : oxen.java
+ * @ date : 03/25/2025
+ * @ file : oxen.java
  */
 import java.util.Random;
 
@@ -27,6 +27,7 @@ public class Oxen {
      * 
      * @param name The name of the oxen
      * @param cost The purchase cost of the oxen
+     *
      */
     public Oxen(String name, int cost) {
         this.name = name;

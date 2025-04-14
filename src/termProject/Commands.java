@@ -5,7 +5,7 @@ package termProject;
  * Processes and executes player commands during gameplay.
  * Handles movement, hunting, trading, checking inventory/status, and using items.
  *
- * @author : Alex Randall, Chase McCluskey, Painter Drury, and Domenic Pilla
+ * @author : Painter Drury, and Domenic Pilla
  * @version : 1.0
  * @date : 03/25/2025
  * @file : commands.java

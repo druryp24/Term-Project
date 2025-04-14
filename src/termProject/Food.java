@@ -5,10 +5,10 @@ package termProject;
  * Represents food items that can be consumed by players and animals.
  * Extends the item class with food-specific attributes such as nutrition and perishability.
  *
- * @author : Alex Randall, Chase McCluskey, Painter Drury, and Domenic Pilla
+ * @author : Painter Drury, and Domenic Pilla
  * @version : 1.0
- * @date : 03/25/2025
- * @file : food.java
+ * @ date : 03/25/2025
+ * @ file : food.java
  */
 public class Food extends Item {
     private int nutrition;
@@ -22,7 +22,6 @@ public class Food extends Item {
      * @param name The name of the food item
      * @param weight The weight of the food item
      * @param nutrition The nutritional value of the food
-     * @param  
      */
     public Food(String name, int weight, int nutrition) {
         super(name, weight);

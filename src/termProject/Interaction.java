@@ -5,10 +5,10 @@ package termProject;
  * Manages player interactions with NPCs and merchants.
  * Handles buying, selling, trading, stealing, combat, and dialogue.
  *
- * @author : Alex Randall, Chase McCluskey, Painter Drury, and Domenic Pilla
+ * @author : Painter Drury, and Domenic Pilla
  * @version : 1.0
- * @date : 03/25/2025
- * @file : interaction.java
+ * @ date : 03/25/2025
+ * @ file : interaction.java
  */
 public class Interaction {
 

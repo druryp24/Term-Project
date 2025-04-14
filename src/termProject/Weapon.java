@@ -5,10 +5,10 @@ package termProject;
  * Represents weapons that can be used for hunting and protection.
  * Extends the item class with weapon-specific attributes and behaviors.
  *
- * @author : Alex Randall, Chase McCluskey, Painter Drury, and Domenic Pilla
+ * @author : Painter Drury, and Domenic Pilla
  * @version : 1.0
- * @date : 03/25/2025
- * @file : weapon.java
+ * @ date : 03/25/2025
+ * @ file : weapon.java
  */
 public class Weapon extends Item {
     private int power;
