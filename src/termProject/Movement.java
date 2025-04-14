@@ -7,7 +7,8 @@ public class Movement extends Player {
    private final java.util.Map<String, int[]> directionMap = new HashMap<>();
    private boolean isMoving = true;
    int movementSpeed = 1;
-   private final GameMap gameMap;
+
+
    private Time gameTime;
    private Player currentPlayer;
    private final Scanner scanner;
@@ -21,10 +22,10 @@ public class Movement extends Player {
      * 
      * @param map The game map on which movement occurs
      */
-    public Movement(GameMap map) {
+    public Movement(GameMap map)
+    {
         super();
         currentWeather  = new Weather();
-        this.gameMap = map;
         this.scanner = new Scanner(System.in);
 
         directionMap.put("north", new int[]{0, 1});
@@ -62,12 +63,15 @@ public class Movement extends Player {
          */
          
          // Weather conditions
+        /* todo
          if (currentWeather.isRaining()) {
              multiplier *= 0.6;
          }
          if (currentWeather.isSnowing()) {
              multiplier *= 0.4;
          }
+
+         */
          
          // Vehicle and animal health
         /* commented out for testing
@@ -81,7 +85,8 @@ public class Movement extends Player {
        
          System.out.println("You moved " + distance + " miles.");
 
-        int actualDistance = calculateActualDistance(distance);
+         int actualDistance = distance;
+        // todo int actualDistance = calculateActualDistance(distance);
         
         // comomented out for testing - gameTime.advanceTime(actualDistance / 10); // Advance time based on distance
         // commonted out for testeing - currentPlayer.increaseFatigue(actualDistance * 0.1);
@@ -90,20 +95,20 @@ public class Movement extends Player {
         // Update position based on direction
         switch(direction.toLowerCase()) {
             case "north":
-                gameMap.updatePosition(0, -actualDistance);
+                Main.gameMap.updatePosition(0, -actualDistance);
                 break;
             case "south":
-                gameMap.updatePosition(0, actualDistance);
+                Main.gameMap.updatePosition(0, actualDistance);
                 break;
             case "east":
-                gameMap.updatePosition(actualDistance, 0);
+                Main.gameMap.updatePosition(actualDistance, 0);
                 break;
             case "west":
-                gameMap.updatePosition(-actualDistance, 0);
+                Main.gameMap.updatePosition(-actualDistance, 0);
                 break;
         }
         
-        handleRandomEvent();
+        //todo handleRandomEvent();
     }
 
     private int calculateActualDistance(int intendedDistance) {
@@ -115,7 +120,8 @@ public class Movement extends Player {
         }
         return (int)(intendedDistance * multiplier);
     }
-          
+
+    //todo - for text base implementation?
     public void getDirection()
     {
     	System.out.println("What direction would you like to go? \n You can choose from the follwing inputs ");

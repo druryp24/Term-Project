@@ -15,17 +15,21 @@ public class Main {
 
     private MapPanel gameMapPanel;
     private JPanel map;
+
     private static JFrame frame;
 
-    private Player currentPlayer;
+    public static Player currentPlayer;
+    public static GameMap gameMap;
+    public static Inventory playerInventory;
+    public static Wagon playerWagon;
+    public static Time gameTime;
 
-    private GameMap gameMap;
-    private Inventory playerInventory;
-    private Wagon playerWagon;
-    public Time gameTime;
-    private Weather currentWeather;
-    private Currency playerMoney;
-    private Hunting huntingSystem;
+
+    public static Weather currentWeather;
+    public static Currency playerMoney;
+    public static Hunting huntingSystem;
+
+
     private boolean gameStarted = false;
     private int totalTrailDistance;
     private int daysTraveled = 0;
@@ -39,7 +43,7 @@ public class Main {
         map.setVisible(false);
         frame.pack();
 
-        gameMapPanel =  new MapPanel(gameMap);
+        gameMapPanel =  new MapPanel();
 
         moveButton.addActionListener(new ActionListener() {
             @Override
@@ -69,19 +73,7 @@ public class Main {
        Initialize.start();
     }
 
-    private void initializeGameComponents() {
-        // Initialize basic components
-        currentPlayer = new Player("Player 1", "Male", 100);
-        gameMap = new GameMap(0, 0);
-        playerInventory = new Inventory();
-        playerWagon = new Wagon();
-        gameTime = new Time();
-        playerMoney = new Currency(1600); // Standard starting money
-        huntingSystem = new Hunting(currentPlayer);
-        daysTraveled = 1;
 
-        currentPlayer.createInventory();
-    }
 
     private void initializeGameWithChoices() {
         // Add initial inventory (similar to startGame's initialization)
@@ -120,22 +112,23 @@ public class Main {
                 moveSystem.travelDirection(direction.toLowerCase(), distance);
 
                 // Process travel events
-                processTravelEvents();
+                //todo processTravelEvents();
 
                 // Consume resources based on travel
-                /*
-                playerInventory.consumeDailyRations(currentPlayer.getPartySize());
-
-                 */
+                //todo playerInventory.consumeDailyRations(currentPlayer.getPartySize());
 
                 // Update game time
+                /* todo
                 gameTime.advanceDay();
                 daysTraveled++;
 
+                 */
+
                 // Check if reached landmark
-                checkForLandmarks();
+                // todo checkForLandmarks();
 
                 updateGameState();
+
                 logMessage("Traveled " + distance + " miles " + direction + ".");
             } catch (NumberFormatException e) {
                 logMessage("Invalid distance entered.");
@@ -167,7 +160,7 @@ public class Main {
         }
 
         // Update weather
-        currentWeather.updateWeather();
+        // todo currentWeather.updateWeather();
 
         // Random event to ask about hunting if food is low
         if (playerInventory.getFoodAmount() < 50 && Math.random() < 0.5) {
@@ -208,9 +201,10 @@ public class Main {
         updateGameState();
     }
 
-    private void updateGameState() {
+    private void updateGameState()
+    {
         gameMapPanel.repaint();
-        checkGameConditions();
+        // todo checkGameConditions();
     }
 
     private void checkGameConditions() {
@@ -234,7 +228,6 @@ public class Main {
                 JOptionPane.YES_NO_OPTION);
 
         if (choice == JOptionPane.YES_OPTION) {
-            initializeGameComponents();
             Initialize.start();
             updateGameState();
         } else {

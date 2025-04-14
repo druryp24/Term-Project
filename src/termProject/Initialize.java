@@ -6,6 +6,8 @@ public class Initialize
 {
     public static void start()
     {
+        initializeGameComponents();
+
         if(setupCharacter() && selectDepartureMonth() && selectTrail());
         else
             Main.main.logMessage("Failed to set up game.");
@@ -124,4 +126,17 @@ public class Initialize
         return true;
     }
 
+    public static void initializeGameComponents()
+    {
+        // Initialize basic components
+        Main.currentPlayer = new Player("Player 1", "Male", 100);
+        Main.gameMap = new GameMap(0, 0);
+        Main.playerInventory = new Inventory();
+        Main.playerWagon = new Wagon();
+        Main.gameTime = new Time();
+        Main.playerMoney = new Currency(1600); // Standard starting money
+        Main.huntingSystem = new Hunting(Main.currentPlayer);
+
+        Main.currentPlayer.createInventory();
+    }
 }
